@@ -13,7 +13,8 @@
 #### Configuration  
 
 ##### backend/
-  * copy your lab-14 or comparable api into into a backend directory
+  * copy your  api into into a backend directory
+    * **Stretch Goal:** use a [Git submodule instead](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 ##### frontend/
 * **README.md** -- with documention about your lab
@@ -23,7 +24,7 @@
 * **.eslintignore** -- with the class .eslintignore
 * **yarn.lock** -- with the yarn lockfile
 * **package.json** -- with all dependencies and dev-dependencies 
-* **webpack.config.js** -- with webpack config
+* **webpack.config.js** -- with webpack config (or use `create-react-app`)
 * **src/** -- containing the frontend code
 * **src/main.js** -- renders the app
 * **src/style** -- containing your sass
