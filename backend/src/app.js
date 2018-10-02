@@ -2,6 +2,8 @@
 
 import express from 'express';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 
 import errorMiddleware from './middleware/error';
@@ -11,8 +13,11 @@ const app = module.exports = express();
 
 
 app.use(morgan('tiny'));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
 
 app.get('/', (req, res) => {
   res.send('<html><body><h1>DeltaV</h1></body></html>');

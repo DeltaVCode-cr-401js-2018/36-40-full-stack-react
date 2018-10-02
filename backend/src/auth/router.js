@@ -11,8 +11,10 @@ import auth from './middleware';
 
 
 authRouter.get('/signin', auth, (req, res)=>{
-  res.send(res.token);
-  return;
+  setAuthCookie(res, req.token);
+  res.send({
+    token: req.token,
+  });
 });
 
 authRouter.post('/signup', (req, res, next)=>{
@@ -22,18 +24,25 @@ authRouter.post('/signup', (req, res, next)=>{
   });
   user.save()
     .then(user=>{
+      const token = user.generateToken();
+      setAuthCookie(res, token);
       res.send({
-        token: user.generateToken(),
+        token,
       });
     })
     .catch(next);
 });
 
 authRouter.post('/signin', auth, (req, res) => {
+  setAuthCookie(res, req.token);
   res.send({
-    token: res.token,
+    token: req.token,
   });
 });
+
+function setAuthCookie(res, token){
+  res.cookie('X-Token', token, {maxAge: 1000000000});
+}
 
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || 'spotify_id';
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5000';

@@ -8,7 +8,7 @@ export default (req, res, next) => {
 
   if(!authHeader){
     console.log('no auth header');
-    return unauthorized();
+    return checkCookies();
   }
   if(authHeader.match(/^basic\s+/i)){
     let base64Header = authHeader.replace(/^basic\s+/i, '');
@@ -25,7 +25,7 @@ export default (req, res, next) => {
           res.token = user.generateToken();
           return next();
         }
-        unauthorized();
+        checkCookies();
       })
       .catch(err=>{
         next(err);
@@ -40,13 +40,33 @@ export default (req, res, next) => {
           res.user = user;
           return next();
         }
-        unauthorized();
+        checkCookies();
       })
       .catch(next);
   }
   else{
-    unauthorized();
+    checkCookies();
   }
+  function checkCookies(){
+    if(req.cookies['X-token']){
+      let token = req.cookies['X-token'];
+      User.authorize(token)
+        .then(user =>{
+          if(user){
+            console.log('Cookie authorized.');
+            req.token = token;
+            req.user = user;
+            return next();
+          }
+          unauthorized();
+        })
+        .catch(next);
+    }
+    else{
+      unauthorized();
+    }
+  }
+
   function unauthorized(){
     res.setHeader('WWW-Authenticate', 'Basic realm="DeltaV"');
     next({
