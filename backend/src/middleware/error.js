@@ -16,6 +16,15 @@ export default (err, req, res, next) => {
     return;
   }
 
+  if(err.code === 11000){
+    res.statusCode = 409;
+    debug('Conflict:', err.message);
+    res.json({
+      message: 'This name has been claimed already. Please try another name.',
+    });
+    return;
+  }
+
   debug(err);
 
   if (req.headers['accept'] !== 'application/json') {
