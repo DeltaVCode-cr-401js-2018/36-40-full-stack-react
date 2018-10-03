@@ -44,6 +44,20 @@ function setAuthCookie(res, token){
   res.cookie('X-Token', token, {maxAge: 1000000000});
 }
 
+authRouter.post('/signout', auth, (req,res)=>{
+  setAuthCookie(res, '');
+  res.send({
+    status: 'success',
+  });
+});
+
+authRouter.get('/user', auth, (req, res) =>{
+  res.send({
+    ...req.user.toObject(),
+    permissions: req.user.permissions,
+  });
+});
+
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || 'spotify_id';
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5000';
 

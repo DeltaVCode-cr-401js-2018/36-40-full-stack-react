@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Dashboard from './components/dashboard';
 import Auth from './components/auth';
+import Nav from './components/nav';
 
 class App extends Component {
   render() {
@@ -12,12 +13,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <nav>
-            <ul>
-              <li><Link to='/auth/signup'>Sign Up</Link></li>
-              <li><Link to='/auth/signin'>Sign In</Link></li>
-            </ul>
-          </nav>
+          <Nav />
         </header>
         <div className="App-intro">
           <Route exact path="/" component={Dashboard} />

@@ -1,5 +1,5 @@
 import * as actions from '../actions/auth-actions';
-export default (state = false, action) => {
+export default (state = null, action) => {
   const {type, payload} = action;
   switch(type){
     case actions.TOKEN_SET:
