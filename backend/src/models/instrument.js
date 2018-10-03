@@ -8,6 +8,7 @@ const instrumentSchema = Schema({
   family: { type: String, required: true},
   retailer: { type: String},
   ensemble: {type: Schema.Types.ObjectId, ref: 'ensemble'},
+  userID: {type: Schema.Types.ObjectId, ref: 'users', required: true},
 });
 
 instrumentSchema.pre('findOne', function(next){

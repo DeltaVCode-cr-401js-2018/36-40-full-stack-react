@@ -4,9 +4,20 @@ import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+const permissions = {
+  user: ['read'],
+  editor: ['read', 'write'],
+  admin: ['read', 'write', 'create', 'delete'],
+};
+
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true},
+  role: {type: String, required: true, default: 'user', enum: Object.keys(permissions)},
+});
+
+userSchema.post('init', function(){
+  this.permissions = permissions[this.role] || [];
 });
 
 userSchema.pre('save', function(next){

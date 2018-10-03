@@ -6,6 +6,7 @@ const ensembleSchema = Schema({
   instruments: [
     { type: Schema.Types.ObjectId, ref: 'instrument' },
   ],
+  userID: {type: Schema.Types.ObjectId, ref: 'users', required: true},
 });
 ensembleSchema.pre('findOne', function (next) {
   this.populate('instruments');

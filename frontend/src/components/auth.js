@@ -6,6 +6,10 @@ import AuthForm from './auth-form'
 class AuthContainer extends React.Component{
   render(){
     const type = this.props.match.params.type;
+    if(type === 'signout'){
+      this.props.signoutHandler(() => this.props.history.push('/'));
+      return null;
+    }
     const handleComplete = this.props[type + 'Handler'];
     return(
       <AuthForm onComplete={handleComplete} 
@@ -22,6 +26,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   signinHandler: user => dispatch(actions.signInReq(user)),
   signupHandler: user => dispatch(actions.signUpReq(user)),
+  signoutHandler: redirect => dispatch(actions.signOutReq(redirect)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
