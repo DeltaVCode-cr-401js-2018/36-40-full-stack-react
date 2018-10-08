@@ -1,28 +1,157 @@
-.App {
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  background: radial-gradient(ellipse at 25% 25%, rgba(199,140,2,1) 0%, rgba(230,175,46,1) 42%, rgba(237,192,86,1) 77%, rgba(255,179,0,1) 99%, rgba(255,179,0,1) 100%);
+}
+
+.error{
+  color: red;
+}
+
+div{
+  margin: 10px;
+}
+
+header, form{
+  background: rgba(0,0,0, .5);
+  border: 5px outset rgb(138, 138, 138);
+  color: rgba(72, 223, 190, 0.5);
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 1);
+  width: 75%;
+  margin: 0 auto;
+}
+
+h1{
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+}
+
+header ul{
+  list-style: none;
+  width: 75%;
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+header li{
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  transition: 400ms ease;
+  border: 0px solid transparent;
+  border-radius: 50%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+header li:hover{
+  background: #ccc;
+  box-shadow: inset -8px -6px 5px 0px rgba(0,0,0,0.75);
 }
 
-.App-title {
-  font-size: 1.5em;
+header a{
+  color: rgba(72, 223, 190, 0.5);
+  text-decoration: none;
 }
 
-.App-intro {
-  font-size: large;
+form{
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+form input{
+  display: block;
+  margin: 10px auto;
+  height: calc(100%+20px);
+}
+
+form input:focus{
+  background: rgba(199,140,2,1);
+}
+
+form button{
+  position: absolute;
+  right: 10px;
+  bottom: calc(50% - 10px);
+  border: transparent 2px inset;
+  border-radius: 10px; 
+  padding: 3px;
+  transition: 200ms linear;
+}
+
+form button:hover{
+  border-color: black; 
+}
+
+span{
+  display: inline-block;
+  animation: bounce 4s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+span.two{
+  animation-delay: 1s;
+}
+
+span.three{
+  animation-delay: 2s;
+}
+
+.loading{
+  animation: colorChange 6s linear;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes bounce{
+  0%, 12.5%, 100%{
+    transform: translateY(0px);
+    transition: ease-in-out;
+  }
+  2.5%{
+    transform: translateY(-10px);
+    transition: ease-in-out;
+  }
+  15%{
+    transform: translateY(-5px);
+    transition: ease-in-out;
+  }
+  25%{
+    transform: translateY(0px);
+    transition: ease-in-out;
+  }
+  26%{
+    transform: translateY(-2px);
+    transition: ease-in-out;
+  }
+  30%{
+    transform: translateY(0px);
+    transition: ease-in-out;
+  }
+}
+
+@keyframes colorChange{
+  0%, 100%{
+    color: black;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 1);
+  }
+  25%{
+    color: rgba(72, 223, 190, 0.5);
+
+  }
+  50%{
+    color: rgba(255, 219, 225, 0.5);
+  }
+  75%{
+    color: rgba(129, 32, 68, 0.5);
+
+  }
 }

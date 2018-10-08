@@ -13,7 +13,7 @@ class DashboardContainer extends React.Component {
 
     if (!ensembles) {
       return (
-        <h2>Loading...</h2>
+        <h2 className='loading'>Loading<span className='one'>.</span><span className='two'>.</span><span className='three'>.</span></h2>
       );
     }
 

@@ -18,8 +18,15 @@ const Nav = ({auth}) =>(
   </nav>
 );
 
-export default connect(
+const mapStateToProps = (state) =>({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Nav);
+
+//This wouldn't work?
+/*export default connect(
   state=({
     auth: state.auth,
   })
-)(Nav);
+)(Nav);*/
