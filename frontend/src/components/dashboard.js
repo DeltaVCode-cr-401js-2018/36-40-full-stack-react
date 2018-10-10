@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as ensembleActions from '../actions/ensembles-actions';
+import Modal from './form-modal';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
@@ -20,7 +21,10 @@ class DashboardContainer extends React.Component {
     return (
       <ul>
         {ensembles.map(ensemble => (
-          <li key={ensemble._id}>{ensemble.name}</li>
+          <div>
+            <li key={ensemble._id}>{ensemble.name}</li>
+            <Modal />
+          </div>
         ))}
       </ul>
     );
